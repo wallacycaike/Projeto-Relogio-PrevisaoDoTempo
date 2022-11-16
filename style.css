@@ -1,0 +1,388 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Gruppo&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(6, 6, 6);
+  color: rgb(0, 130, 0);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.clock {
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  margin: 40px 30px;
+  text-align: center;
+}
+
+#displayDay {
+  font-family: "Gruppo", cursive;
+  font-size: 3rem;
+  width: 100%;
+}
+
+#displayClock {
+  font-family: "Audiowide", cursive;
+  font-size: 3rem;
+  width: 100%;
+}
+
+@keyframes neonShadow {
+  from {
+    box-shadow: 1px 1px 10px rgba(0, 130, 0, 0.8);
+  }
+}
+
+.weather {
+  font-family: "Gruppo", cursive;
+  font-size: 2rem;
+  width: 550px;
+  margin: 40px 30px;
+  padding: 15px;
+  border-radius: 10px 40px;
+  box-shadow: 1px 1px 10px rgba(0, 130, 0, 0.2);
+  animation: neonShadow 1s ease-in-out infinite alternate-reverse;
+  /* background-color: #fff; */
+}
+
+/* .weather:hover {
+  box-shadow: 1px 1px 10px rgb(0, 130, 0);
+} */
+
+.weather header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Audiowide", cursive;
+  /* border-bottom: 1px solid rgb(0, 130, 0); */
+  text-decoration: underline 1px rgba(0, 130, 0, 0.4);
+}
+
+header i {
+  cursor: pointer;
+  font-size: 0px;
+  margin-right: 8px;
+  transition: 0.15s ease-in;
+}
+
+header i:hover {
+  text-shadow: 1px 1px 10px rgba(0, 130, 0);
+}
+
+.weather.active header i {
+  font-size: 30px;
+  margin-left: 5px;
+}
+
+.weather .input-part {
+  margin: 10px 25px;
+}
+
+.weather.active .input-part {
+  display: none;
+}
+
+.input-part .info-txt {
+  display: none;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 12px 10px;
+  border-radius: 7px;
+  margin-bottom: 15px;
+}
+
+.info-txt.error {
+  display: block;
+  color: #721c24;
+  border: 1px solid #721c24;
+}
+
+.info-txt.pending {
+  display: block;
+  color: #228ea1;
+  border: 1px solid #228ea1;
+}
+
+.input-part :where(input, button) {
+  font-family: "Gruppo", cursive;
+  font-size: 1.6rem;
+  color: rgb(0, 130, 0);
+  width: 100%;
+  height: 55px;
+  background: none;
+  border: none;
+  outline: none;
+  border-radius: 7px;
+}
+
+.input-part input {
+  color: rgb(0, 130, 0);
+  text-align: center;
+  transition: 0.25s ease-in-out;
+}
+
+.input-part input:hover {
+  font-size: 1.56rem;
+  border: 1px solid rgb(0, 130, 0);
+  box-shadow: 1px 1px 10px rgb(0, 130, 0);
+}
+
+.input-part input:is(:focus, :valid) {
+  border: 2px solid green;
+  box-shadow: 1px 1px 10px rgb(0, 130, 0);
+}
+
+.input-part input::placeholder {
+  color: rgb(0, 130, 0);
+}
+
+.input-part .separator {
+  height: 1px;
+  width: 100%;
+  margin: 25px 0px;
+  /* background-color: rgb(0, 130, 0); */
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.separator::before {
+  content: "-= ou =-";
+  color: rgb(0, 130, 0);
+  font-size: 1.6rem;
+  padding: 0 15px;
+  background-color: rgb(6, 6, 6);
+}
+
+.input-part button {
+  cursor: pointer;
+  /* border: 1px solid rgb(0, 130, 0); */
+  border-radius: 7px;
+  transition: 0.25s ease-in-out;
+}
+
+.input-part button:hover {
+  background-color: rgb(0, 130, 0);
+  box-shadow: 1px 1px 10px rgb(0, 130, 0);
+  color: rgb(6, 6, 6);
+}
+
+.weather .weather-part {
+  margin: 30px 0 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.weather.active .weather-part {
+  display: flex;
+}
+
+.weather-part img {
+  max-width: 125px;
+}
+
+.weather-part .temp {
+  display: flex;
+  margin-top: 7px;
+  font-size: 72px;
+}
+
+/* .weather-part .temp .numb {
+} */
+
+.weather-part .temp .deg {
+  font-size: 40px;
+  margin: 10px 5px 0 0;
+  display: block;
+}
+
+.weather-part .weather-content {
+  font-size: 21px;
+  text-align: center;
+  margin: -5px 20px 15px;
+}
+
+.weather-part .location {
+  display: flex;
+  align-items: center;
+  font-size: 21px;
+  margin-bottom: 30px;
+}
+
+.location i {
+  font-size: 15px;
+  margin-right: 10px;
+}
+
+.weather-part .bottom-details {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid rgb(0, 130, 0, 0.5);
+  justify-content: space-between;
+}
+
+.bottom-details .column {
+  width: 100%;
+  display: flex;
+  padding: 15px 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom-details .humidity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.column i {
+  color: rgb(0, 130, 0);
+  font-size: 30px;
+  margin-right: 7px;
+}
+
+.column.humidity {
+  border-left: 1px solid rgb(0, 130, 0, 0.5);
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.details .temp,
+.humidity span {
+  font-size: 18px;
+  /* margin-top: -3px; */
+}
+
+.details .temp .deg {
+  margin: 0;
+  font-size: 17px;
+  padding: 0 2px 0 1px;
+}
+
+.details p {
+  font-size: 14px;
+  /* margin-top: -6px; */
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  font-style: italic;
+  position: relative;
+  top: 100px;
+  /* margin-top: 55px;
+  margin-bottom: 15px; */
+}
+
+.footer span {
+  color: rgba(255, 255, 255, 0.5);
+  opacity: 0.13;
+  text-shadow: 1px 0px #000;
+}
+
+.footer i {
+  opacity: 0.13;
+  color: rgba(255, 255, 255, 0.5);
+  transition: 0.2s linear;
+}
+
+.footer i:hover {
+  opacity: 1;
+}
+
+@media (max-width: 1024px) {
+  #displayDay {
+    font-size: 2.5rem;
+  }
+
+  #displayClock {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #displayDay {
+    font-size: 2rem;
+  }
+
+  #displayClock {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  #displayDay {
+    font-size: 1.5rem;
+  }
+
+  #displayClock {
+    font-size: 1.5rem;
+  }
+
+  .weather {
+    font-size: 1.5rem;
+    width: 90vw;
+  }
+
+  .separator::before {
+    font-size: 1.2rem;
+  }
+
+  .input-part :where(input, button) {
+    font-size: 1.2rem;
+  }
+
+  .input-part input:hover {
+    font-size: 1.16rem;
+  }
+
+  .bottom-details .details {
+    font-size: 12px;
+  }
+
+  .details .temp {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 380px) {
+  .input-part :where(input, button) {
+    font-size: 0.9rem;
+  }
+
+  .input-part input:hover {
+    font-size: 0.75rem;
+  }
+
+  .bottom-details .details .temp {
+    font-size: 14px;
+  }
+
+  .bottom-details .details p {
+    font-size: 12px;
+  }
+}

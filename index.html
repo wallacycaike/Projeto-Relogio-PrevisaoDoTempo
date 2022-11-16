@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/97248c65c4.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="index.js" defer></script>
+    <script src="weather.js" defer></script>
+    <title>Relógio</title>
+  </head>
+  <body>
+    <div class="clock">
+      <p id="displayDay"></p>
+      <p id="displayClock"></p>
+    </div>
+    <div class="weather">
+      <header><i class="fa-solid fa-arrow-left"></i>Clima</header>
+      <section class="input-part">
+        <p class="info-txt"></p>
+        <input
+          type="text"
+          placeholder="Digite aqui o nome da Cidade:"
+          spellcheck="false"
+          required
+        />
+        <div class="separator"></div>
+        <button>Obter a Localização do Dispositivo</button>
+      </section>
+      <section class="weather-part">
+        <img src="#" alt="Weather Icon" />
+        <div class="temp">
+          <span class="numb">_</span>
+          <span class="deg">°</span>C
+        </div>
+        <div class="weather-content">_ _</div>
+        <div class="location">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>_, _</span>
+        </div>
+        <div class="bottom-details">
+          <div class="column feels">
+            <i class="fa-solid fa-temperature-half"></i>
+            <div class="details">
+              <div class="temp">
+                <span class="numb-2">_</span>
+                <span class="deg">°</span>C
+              </div>
+              <p>Sensação térmica</p>
+            </div>
+          </div>
+          <div class="column humidity">
+            <i class="fa-solid fa-droplet"></i>
+            <div class="details">
+              <span>_</span>
+              <p>Umidade</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <footer class="footer">
+      <span class="me-4 copyW">Feito por Wachiles &copy; 2022</span>
+      <a href="https://www.instagram.com/caikematoos/?hl=pt-br" target="_blank"
+        ><i class="fa-brands fa-instagram"></i
+      ></a>
+      <a href="https://github.com/wallacycaike" target="_blank"
+        ><i class="fa-brands fa-github"></i
+      ></a>
+      <a href="https://twitter.com" target="_blank"
+        ><i class="fa-brands fa-twitter"></i
+      ></a>
+    </footer>
+  </body>
+</html>
