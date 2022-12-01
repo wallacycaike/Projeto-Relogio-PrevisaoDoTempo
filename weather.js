@@ -4,9 +4,14 @@ const weather = document.querySelector(".weather"),
   inputField = inputPart.querySelector("input"),
   locationBtn = inputPart.querySelector("button"),
   wIcon = weather.querySelector(".weather-part img"),
-  arrowBack = weather.querySelector("header i");
+  arrowBack = weather.querySelector("header i"),
+  favStar = weather.querySelector("#fav-star"),
+  favListIcon = weather.querySelector("#list-icon"),
+  favList = weather.querySelector(".fav-list"),
+  favoriteCity = weather.querySelectorAll(".fav-list li");
 
 let api;
+let favCities = JSON.parse(localStorage.getItem("fav-cities"));
 
 inputField.addEventListener("keyup", (e) => {
   if (e.key === "Enter" && inputField.value !== "") {
@@ -79,10 +84,89 @@ function weatherDetails(info) {
     inputField.value = "";
     infoTxt.classList.remove("pending", "error");
     weather.classList.add("active");
-    // console.log(info);
+    favList.classList.add("secondary");
+
+    if (favCities) {
+      checkCity(city);
+    }
   }
 }
 
 arrowBack.addEventListener("click", () => {
+  favList.classList.remove("show");
+  favList.classList.remove("secondary");
   weather.classList.remove("active");
 });
+
+favStar.addEventListener("click", () => {
+  showFavCities();
+  fetch(api)
+    .then((response) => response.json())
+    .then((result) => addOrRemoveCity(result.name));
+});
+
+function checkCity(cityName) {
+  if (favCities.includes(cityName)) {
+    favStar.classList.remove("fa-regular");
+    favStar.classList.add("fa-solid");
+  } else {
+    favStar.classList.remove("fa-solid");
+    favStar.classList.add("fa-regular");
+  }
+}
+
+function showFavCities() {
+  if (favCities) {
+    if (favCities.length === 0) {
+      favList.innerHTML = `<li>Nenhuma cidade salva.</li>`;
+      favList.classList.add("warning");
+    } else {
+      favList.classList.remove("warning");
+      let li = "";
+      for (let i = 0; i < favCities.length; i++) {
+        li += `<li onclick="showFavCityInfo(this)">${favCities[i]}</li>`;
+        favList.innerHTML = li;
+      }
+    }
+  } else {
+    favList.innerHTML = `<li>Nenhuma cidade salva.</li>`;
+    favList.classList.add("warning");
+  }
+}
+
+function addOrRemoveCity(cityName) {
+  if (favCities) {
+    if (favCities.includes(cityName)) {
+      const cityId = favCities.indexOf(cityName);
+      favStar.classList.remove("fa-solid");
+      favStar.classList.add("fa-regular");
+      favCities.splice(cityId, 1);
+      localStorage.setItem("fav-cities", JSON.stringify(favCities));
+    } else {
+      favStar.classList.remove("fa-regular");
+      favStar.classList.add("fa-solid");
+      favCities.push(cityName);
+      localStorage.setItem("fav-cities", JSON.stringify(favCities));
+    }
+  } else {
+    favStar.classList.remove("fa-regular");
+    favStar.classList.add("fa-solid");
+    favCities = [];
+    favCities.push(cityName);
+    localStorage.setItem("fav-cities", JSON.stringify(favCities));
+  }
+}
+
+favListIcon.addEventListener("click", () => {
+  showFavCities();
+  favList.classList.add("show");
+  document.addEventListener("click", (e) => {
+    if (e.target.tagName !== "I") {
+      favList.classList.remove("show");
+    }
+  });
+});
+
+function showFavCityInfo(city) {
+  requestApi(city.textContent);
+}

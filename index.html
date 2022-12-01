@@ -11,7 +11,7 @@
     ></script>
     <script src="index.js" defer></script>
     <script src="weather.js" defer></script>
-    <title>Relógio</title>
+    <title>Relógio & Clima</title>
   </head>
   <body>
     <div class="clock">
@@ -19,15 +19,41 @@
       <p id="displayClock"></p>
     </div>
     <div class="weather">
-      <header><i class="fa-solid fa-arrow-left"></i>Clima</header>
+      <header>
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Clima</span>
+        <div class="fav-icons">
+          <i
+            id="fav-star"
+            class="fa-regular fa-star"
+            title="Favoritar Cidade"
+          ></i>
+          <div class="fav-menu">
+            <i
+              id="list-icon"
+              class="fa-solid fa-arrow-down-wide-short"
+              title="Ver cidades salvas"
+            ></i>
+            <ul class="fav-list">
+              <!-- <li>Belo Horizonte</li>
+              <li>Ibirité</li>
+              <li>Sarzedo</li> -->
+            </ul>
+          </div>
+        </div>
+      </header>
       <section class="input-part">
         <p class="info-txt"></p>
-        <input
-          type="text"
-          placeholder="Digite aqui o nome da Cidade:"
-          spellcheck="false"
-          required
-        />
+        <div class="city-input">
+          <input
+            name="city"
+            type="text"
+            spellcheck="false"
+            required
+            autocomplete="off"
+          />
+          <label for="city">Digite aqui o nome da Cidade:</label>
+        </div>
         <div class="separator"></div>
         <button>Obter a Localização do Dispositivo</button>
       </section>
